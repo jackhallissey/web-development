@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+<main>
+
+    <h2>Delete Rating</h2>
+
+    <p>Please confirm whether you would like to delete your rating for <a href="{{ url_for('movie_page', movie_id=movie['id']) }}" class="highlight">{{ movie['title'] }}</a>.</p>
+
+    <section class="rating">
+        <b><a href="{{ url_for('user_page', username=rating['username']) }}">{{ rating['username'] }}</a></b>
+        <p class="highlight">{{ rating['score'] }}/10</p>
+        <p>{{ rating['review'] }}</p>
+    </section>
+
+    <form action="" method="POST" novalidate>
+        {{ form.hidden_tag() }}
+
+        {{ form.submit() }}
+    </form>
+
+</main>
+{% endblock %}

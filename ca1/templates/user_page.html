@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+<main class="user_page">
+
+    <div>
+        <img class="profile" src="{{ url_for('static', filename='profile.jpg') }}" alt="Profile Picture">
+        
+        <h2>{{username}}</h2>
+    </div>
+
+    <div>
+        {% if username == g.user %}
+            <section>
+                <h2>Stats</h2>
+
+                <p>
+                    <a href="{{ url_for('stats') }}" class="highlight">View Stats</a>
+                </p>
+            </section>
+        {% endif %}
+
+        <section>
+            {% if lists or username == g.user %}
+                <h2>Lists</h2>
+                
+                <ul>
+                    {% for list in lists %}
+                        <li>
+                            <a href="{{ url_for('list_page', list_id=list['id']) }}" class="highlight">{{ list['list_name'] }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+            {% if username == g.user %}
+                <a href="{{ url_for('create_list') }}" class="highlight">Create A List</a>
+            {% endif %}
+        </section>
+
+        <section>
+            <h2>Ratings</h2>
+
+            {% for rating in ratings %}
+                <section class="rating">
+                    <p>
+                        <b><a href="{{ url_for('movie_page', movie_id=rating['movie_id']) }}" class="highlight title">{{ rating["title"] }}</a></b>
+                    </p>
+                    <b>{{ rating["username"] }}</a></b>
+                    <p class="highlight">{{ rating["score"] }}/10</p>
+                    <p>{{ rating["review"] }}</p>
+                    {% if rating["username"] == g.user %}
+                        <p><a href="{{ url_for('remove_rating', movie_id=rating['movie_id']) }}" class="highlight">Delete</a></p>
+                    {% endif %}
+                </section>
+            {% endfor %}
+        </section>
+    </div>
+</main>
+{% endblock %}

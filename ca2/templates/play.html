@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Game</title>
+	<link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script>
+		// Adapted from the Flask documentation: https://flask.palletsprojects.com/en/3.0.x/patterns/javascript/#generating-urls
+        const root = {{ request.script_root|tojson }};
+		{% if g.user %}
+			const logged_in = true;
+		{% else %}
+			const logged_in = false;
+		{% endif %}
+    </script>
+    <script src="{{ url_for('static', filename='game.js') }}" type="module"></script>
+</head>
+<body>
+    <section id="game">
+        <canvas width="510" height="320"></canvas>
+        <p id="welcome">Loading...</p>
+        <p id="start"></p>
+		<p id="message"></p>
+    </section>
+	
+	<div>
+		<nav id="main_links">
+			{% if g.user %}
+				<b>{{ g.user }}</b>
+				<a href="{{ url_for('logout')}}">Logout</a>
+			{% else %}
+				<a href="{{ url_for('login')}}">Login</a>
+				<a href="{{ url_for('register') }}">Register</a>
+			{% endif %}
+			<a href="{{ url_for('lb')}}">Leaderboard</a>
+		</nav>
+
+		<section id="sidebar" class="hidden">
+			<p id="score">Your Score: 0</p>
+			<p id="level">Level: 1</p>
+			<table>
+				<thead>
+					<tr><th colspan="3">Inventory</th></tr>
+				</thead>
+				<tbody id="inventory"></tbody>
+			</table>
+			<table>
+				<thead>
+					<tr><th colspan="3">Power-ups</th></tr>
+				</thead>
+				<tbody id="power_ups"></tbody>
+			</table>
+			<table>
+				<caption>Results</caption>
+				<thead>
+					<th>Score</th>
+					<th>Levels</th>
+					<th>Cheats</th>
+				</thead>
+				<tbody id="results_list">
+					{% if results %}
+						{% for result in results %}
+							<tr>
+								<td>{{ result["score"] }}</td>
+								<td>{{ result["levels"] }}</td>
+								{% if result["cheats"] == 0 %}
+									<td>No</td>
+								{% else %}
+									<td>Yes</td>
+								{% endif %}
+							</tr>
+						{% endfor %}
+					{% endif %}
+				</tbody>
+			</table>
+			<nav id="results_links" class="hidden">
+				<button id="clear_results" type="button">Delete Results</button>
+				{% if not g.user %}
+					<p>
+						<a href="{{ url_for('login')}}">Login</a> or <a href="{{ url_for('register') }}">register</a> if you want to be listed on the <a href="{{ url_for('lb')}}">leaderboard</a>.
+					</p>
+				{% endif %}
+			</nav>
+			{% if g.user %}
+				<table>
+					<caption>Your Stats</caption>
+					<thead>
+						<th>Total Score</th>
+						<th>Avg Score</th>
+						<th>Avg Levels</th>
+					</thead>
+					<tbody id="player_stats">
+						{% if stats %}
+							<td>{{ stats[0] }}</td>
+							<td>{{ stats[1]|round(2) }}</td>
+							<td>{{ stats[2]|round(2) }}</td>
+						{% endif %}
+					</tbody>
+				</table>
+			{% endif %}
+		</section>
+	</div>
+</body>
+</html>

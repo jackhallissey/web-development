@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+<main>
+
+    <section>
+        <h2>My Account</h2>
+        <p>Username: <b class="highlight">{{ g.user }}</b></p>
+    </section>
+
+    <section>
+        <h2>Change Password</h2>
+
+        <form action="" method="POST" novalidate>
+            {{ form.hidden_tag() }}
+
+            <p>
+            {{ form.old_password.label }}
+            {{ form.old_password() }}
+            {% for error in form.old_password.errors %}
+                {{ error }}
+            {% endfor %}
+            </p>
+            <p>
+            {{ form.new_password.label }}
+            {{ form.new_password() }}
+            {% for error in form.new_password.errors %}
+                {{ error }}
+            {% endfor %}
+            </p>
+            <p>
+            {{ form.new_password2.label }}
+            {{ form.new_password2() }}
+            {% for error in form.new_password2.errors %}
+                {{ error }}
+            {% endfor %}
+            </p>
+            {{ form.submit() }}
+        </form>
+        <p>{{ message }}</p>
+    </section>
+
+    <section>
+        <h2>Delete Account</h2>
+        <p>
+            <a href="{{ url_for('delete_account') }}" class="highlight">Delete My Account</a>
+        </p>
+    </section>
+
+</main>
+{% endblock %}

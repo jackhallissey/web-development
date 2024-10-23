@@ -1,0 +1,17 @@
+DROP TABLE IF EXISTS users;
+
+CREATE TABLE users (
+    username TEXT NOT NULL PRIMARY KEY,
+    password TEXT NOT NULL
+);
+
+DROP TABLE IF EXISTS game_results;
+
+CREATE TABLE game_results (
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    user TEXT NOT NULL,
+    score INTEGER NOT NULL,
+    levels INTEGER NOT NULL,
+    cheats INTEGER NOT NULL,
+    FOREIGN KEY (user) REFERENCES users(user)
+);

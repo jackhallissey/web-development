@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+<main>
+
+    <h2>Stats</h2>
+
+    <section>
+        <p>
+            <b>Movies Watched:</b> {{ movies['no_movies'] }}
+        </p>
+
+        <p>
+            <b>Time Watched:</b> {{ movies['total_time'] // 60 }}h {{ movies['total_time'] % 60 }}m
+        </p>
+
+        <p>
+            <b>Your Average Rating:</b> {{ movies['avg_score']|round(1) }}
+        </p>
+    </section>
+
+    <section>
+        <h3>Your Top Genres</h3>
+
+        <table class="movie_list">
+            <tr>
+                <th scope="col">Genre</th>
+                <th scope="col">Movies</th>
+                <th scope="col">Time Watched</th>
+                <th scope="col">Average Rating</th>
+            </tr>
+            {% for genre in genres %}
+            <tr>
+                <th scope="row"><a href="{{ url_for('genre_page', genre_id=genre['id']) }}">{{ genre['name'] }}</a></th>
+                <td>{{ genre['no_movies'] }}</td>
+                <td>{{ genre['total_time'] // 60 }}h {{ genre['total_time'] % 60 }}m</td>
+                <td>{{ genre['avg_score']|round(1) }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </section>
+
+</main>
+{% endblock %}

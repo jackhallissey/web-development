@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+<main>
+    <h2>{{ list['list_name'] }}</h2>
+
+    <p>Please choose the movie you would like to remove from this list.</p>
+
+    <form action="" method="POST" novalidate>
+        {{ form.hidden_tag() }}
+
+        <p>
+        {{ form.movie() }}
+        <br>
+        {% for error in form.movie.errors %}
+            {{ error }}
+        {% endfor %}
+        </p>
+        {{ form.submit() }}
+    </form>
+</main>
+{% endblock %}

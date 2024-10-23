@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Game</title>
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='pages.css') }}">
+</head>
+<body>
+    <section>
+        <h1>Welcome</h1>
+        <p>
+            <a href="{{ url_for('play') }}">Play Game</a>
+        </p>
+        <p>
+            <a href="{{ url_for('lb') }}">Leaderboard</a>
+        </p>
+        <p>
+            <a href="{{ url_for('attribution') }}">Attribution</a>
+        </p>
+    </section>
+
+    <section>
+        <h2>Instructions</h2>
+
+        <section>
+            <h3>Aim of the Game</h3>
+            
+            <ul>
+                <li>Use the arrow keys to move the player around.</li>
+
+                <li>Get to the bottom of the level by avoiding the enemies chasing you and going through the gaps in the walls.</li>
+
+                <li>If you are caught by one of the enemies, the game will end.</li>
+
+                <li>Once you reach the finish point at the bottom right corner, you can advance to the next level.</li>
+
+                <li>When you complete the final level, you have completed the game.</li>
+
+                <li>The game can be paused by pressing the <b>Escape</b> key.</li>
+            </ul>
+
+            <figure>
+                <img src="{{ url_for('static', filename='screenshots/1.png') }}" alt="Game Canvas">
+            </figure>
+        </section>
+
+        <section>
+            <h3>Treasures</h3>
+
+            <ul>
+                <li>As you move throughout the level, you can claim treasures.</li>
+
+                <li>When you claim a treasure, your score will increase by 10.</li>
+
+                <li>You also have a chance of gaining an inventory item or power-up.</li>
+            </ul>
+
+            <figure>
+                <img src="{{ url_for('static', filename='screenshots/2.png') }}" alt="Treasures">
+            </figure>
+        </section>
+
+        <section>
+            <h3>Items</h3>
+
+            <ul>
+                <li>Items can be either weapons or defensive items.</li>
+            </ul>
+
+            <figure>
+                <img src="{{ url_for('static', filename='screenshots/3.png') }}" alt="Inventory items">
+            </figure>
+
+            <ul>
+                <li>Weapons, such as a <b>Gun</b>, allow you to attack an enemy and kill them.</li>
+
+                <li>When you have a weapon in your inventory, you can fire to the <b>left</b> by pressing the <b>A</b> key, or to the <b>right</b> by pressing the <b>D</b> key.</li>
+
+                <li>The weapon will be lost after a single use.</li>
+            </ul>
+
+            <figure>
+                <img src="{{ url_for('static', filename='screenshots/4.png') }}" alt="Using a gun">
+            </figure>
+
+            <ul>
+                <li>Defensive items, such as a <b>Shield</b>, allow you to take a hit from an enemy and survive.</li>
+
+                <li>When you have a defensive item in your inventory, it will automatically be used when an enemy catches you.</li>
+
+                <li>The defensive item will be lost after a single use.</li>
+            </ul>
+
+            <figure>
+                <img src="{{ url_for('static', filename='screenshots/5.png') }}" alt="Using a shield">
+            </figure>
+        </section>
+
+        <section>
+            <h3>Power-ups</h3>
+            
+            <ul>
+                <li>Power-ups give you a certain advantage for a limited time, such as freezing the enemies or allowing you to move through walls freely.</li>
+
+                <li>They will expire after 5 seconds.</li>
+            </ul>
+
+            <figure>
+                <img src="{{ url_for('static', filename='screenshots/6.png') }}" alt="Move Through Walls Power-up">
+            </figure>
+
+            <figure>
+                <img src="{{ url_for('static', filename='screenshots/7.png') }}" alt="Enemies Frozen Power-up">
+            </figure>
+        </section>
+
+        <section>
+            <h3>Cheats</h3>
+            
+            <ul>
+                <li>Cheats give you a certain advantage (the same as the power-ups), and can be toggled by pressing a certain key.</li>
+            </ul>
+
+            <table>
+                <tr>
+                    <th scope="col">Key</th>
+                    <th scope="col">Cheat</th>
+                </tr>
+                <tr>
+                    <th scope="row">` (Backtick)</th>
+                    <td>Freeze Enemies</td>
+                </tr>
+                <tr>
+                    <th scope="row"># (Number Sign)</th>
+                    <td>Move Through Walls</td>
+                </tr>
+            </table>
+
+            <ul>
+                <li>Note that if you use cheats, your game result will not count towards your stats or leaderboard position.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h3>Results and Stats</h3>
+
+            <ul>
+                <li>Every time the game ends, the result, including your score and the number of levels completed, is stored.</li>
+
+                <li>Your recent results can be seen on the right of the screen.</li>
+
+                <li>You can clear your results by pressing the <b>Delete Results</b> button. Be aware that this will delete all your results, and reset your stats and leaderboard positon.</li>
+            </ul>
+
+            <figure>
+                <img src="{{ url_for('static', filename='screenshots/8.png') }}" alt="Results Table">
+            </figure>
+
+            <ul>
+                <li>If you are logged in, your <b>Stats</b> will be shown on the right of the screen, and will update each time the game ends. You will also be listed on the <b>Leaderboard</b>.</li>
+            </ul>
+
+            <figure>
+                <img src="{{ url_for('static', filename='screenshots/9.png') }}" alt="Stats Table">
+            </figure>
+
+            <figure>
+                <img src="{{ url_for('static', filename='screenshots/10.png') }}" alt="Leaderboard">
+            </figure>
+
+            <ul>
+                <li>When you login or register, you will be asked if you would like to add the game results stored in the current session to your account.</li>
+            </ul>
+        </section>
+    </section>
+</body>
+</html>

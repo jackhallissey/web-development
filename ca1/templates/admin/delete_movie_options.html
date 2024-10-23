@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+<main>
+
+    <h2>Delete Movie</h2>
+
+    <table>
+        {% for movie in movies %}
+            <tr>
+                <td>{{ movie['title'] }}</th>
+                <td><a href="{{ url_for('delete_movie', movie_id=movie['id']) }}" class="highlight">Delete</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+</main>
+{% endblock %}

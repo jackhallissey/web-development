@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+<main>
+    <section>
+        <h2>Advanced Search</h2>
+
+        <form action="" method="POST" novalidate>
+            {{ form.hidden_tag() }}
+
+            <p>
+            {{ form.search_term.label }}
+            {{ form.search_term() }}
+            {% for error in form.search_term.errors %}
+                {{ error }}
+            {% endfor %}
+            </p>
+            <p>
+            {{ form.min_date.label }}
+            {{ form.min_date() }}
+            {% for error in form.min_date.errors %}
+                {{ error }}
+            {% endfor %}
+            </p>
+            <p>
+            {{ form.max_date.label }}
+            {{ form.max_date() }}
+            {% for error in form.max_date.errors %}
+                {{ error }}
+            {% endfor %}
+            </p>
+            <p>
+            {{ form.min_score.label }}
+            {{ form.min_score() }}
+            {% for error in form.min_score.errors %}
+                {{ error }}
+            {% endfor %}
+            </p>
+            <p>
+            {{ form.max_score.label }}
+            {{ form.max_score() }}
+            {% for error in form.max_score.errors %}
+                {{ error }}
+            {% endfor %}
+            <p>
+            {{ form.genre.label }}
+            {{ form.genre() }}
+            {% for error in form.genre.errors %}
+                {{ error }}
+            {% endfor %}
+            </p>
+            </p>
+            {{ form.sort1.label }}
+            {{ form.sort1() }}
+            {% for error in form.sort1.errors %}
+                {{ error }}
+            {% endfor %}
+            </p>
+            <p>
+            {{ form.sort1_order() }}
+            {% for error in form.sort1_order.errors %}
+                {{ error }}
+            {% endfor %}
+            </p>
+            <p>
+            {{ form.sort2.label }}
+            {{ form.sort2() }}
+            {% for error in form.sort2.errors %}
+                {{ error }}
+            {% endfor %}
+            </p>
+            <p>
+            {{ form.sort2_order() }}
+            {% for error in form.sort2_order.errors %}
+                {{ error }}
+            {% endfor %}
+            </p>
+            {{ form.submit() }}
+        </form>
+
+        <p>
+            <a href="{{ url_for('search') }}" class="highlight">Standard Search</a>
+        </p>
+    </section>
+
+    {% if movies %}
+        <section>
+            {% include 'movie_list.html' %}
+        </section>
+    {% endif %}
+</main>
+{% endblock %}

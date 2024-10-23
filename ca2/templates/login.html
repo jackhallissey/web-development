@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Login</title>
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+</head>
+<body>
+    <h1>Login</h1>
+
+    <form action="" method="POST" novalidate>
+        {{ form.hidden_tag() }}
+        
+        <p>
+        {{ form.username.label }}
+        {{ form.username() }}
+        {% for error in form.username.errors %}
+            {{ error }}
+        {% endfor %}
+        </p>
+        <p>
+        {{ form.password.label }}
+        {{ form.password() }}
+        {% for error in form.password.errors %}
+            {{ error }}
+        {% endfor %}
+        </p>
+        {{ form.submit() }}
+        <p>
+            <a href="{{ url_for('register') }}">Register</a>
+        </p>
+        <p>
+            <a href="{{ url_for('index') }}">Home</a>
+        </p>
+    </form>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<table class="movie_list">
+    {% for movie in movies %}
+        <tr>
+            <td>
+                <a href="{{ url_for('movie_page', movie_id=movie['id']) }}">
+                    <img class="poster_list" src="{{ url_for('static', filename='posters/' + movie['poster']) }}" alt="Poster for {{ movie['title'] }}">
+                </a>
+            </td>
+            <td><b><a href="{{ url_for('movie_page', movie_id=movie['id']) }}">{{ movie['title'] }}</a></b></td>
+            <td class="highlight"><b>{{ movie['date'][0:4] }}</b></td>
+            {% if movie['avg_score'] == None %}
+            <td class="highlight"><b>-/10</b></td>
+            {% else %}
+                <td class="highlight"><b>{{ movie['avg_score']|round(1) }}/10</b></td>
+            {% endif %}
+            <td>
+                <a href="{{ url_for('genre_page', genre_id=movie[-6]) }}">{{ movie[-5] }}</a>
+            </td>
+            <td>
+                <a href="{{ url_for('genre_page', genre_id=movie[-4]) }}">{{ movie[-3] }}</a>
+            </td>
+            <td>
+                <a href="{{ url_for('genre_page', genre_id=movie[-2]) }}">{{ movie[-1] }}</a>
+            </td>
+        </tr>
+    {% endfor %}
+</table>

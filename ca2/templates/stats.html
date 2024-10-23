@@ -1,0 +1,19 @@
+{% if results %}
+{% for result in results %}
+    <tr>
+        <td>{{ result["score"] }}</td>
+        <td>{{ result["levels"] }}</td>
+        {% if result["cheats"] == 0 %}
+            <td>No</td>
+        {% else %}
+            <td>Yes</td>
+        {% endif %}
+    </tr>
+{% endfor %}
+{% endif %}
+<!-- Stats -->
+{% if results and stats %}
+<td>{{ stats[0] }}</td>
+<td>{{ stats[1]|round(2) }}</td>
+<td>{{ stats[2]|round(2) }}</td>
+{% endif %}

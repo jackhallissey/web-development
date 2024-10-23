@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+<main>
+
+    <h2>Upload Poster</h2>
+
+    <p>Upload a new movie poster.</p>
+    
+    <p>You will then be able to set this as the poster for a movie.</p>
+
+    <!-- Taken from the Flask documentation: https://flask.palletsprojects.com/en/2.3.x/patterns/fileuploads/ -->
+    <form method=post enctype=multipart/form-data>
+        <p><input type=file name=file></p>
+        <input type=submit value=Upload>
+    </form>
+
+    <p>{{ message }}</p>
+</main>
+{% endblock %}

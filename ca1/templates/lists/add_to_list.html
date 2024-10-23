@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+<main class="movie_page">
+    <div>
+        <figure>
+            <img class="poster" src="{{ url_for('static', filename='posters/' + movie['poster']) }}" alt="Poster for {{ movie['title'] }}">
+
+            <figcaption>{{ movie['poster_src'] }}</figcaption>
+        </figure>
+
+        <h2 class="title">{{ movie['title'] }}</h2>
+
+        <p><b class="highlight title">{{ movie['date'][0:4] }}</b></p>
+    </div>
+
+    <div>
+        <h2>Add to List</h2>
+
+        <p>Please choose the list you would like to add <a href="{{ url_for('movie_page', movie_id=movie['id']) }}" class="highlight">{{ movie['title'] }}</a> to.</p>
+
+        <form action="" method="POST" novalidate>
+            {{ form.hidden_tag() }}
+
+            <p>
+            {{ form.list() }}
+            <br>
+            {% for error in form.list.errors %}
+                {{ error }}
+            {% endfor %}
+            </p>
+            {{ form.submit() }}
+        </form>
+
+        <p>Lists that already contain this movie are not shown.</p>
+
+        <p><a href="{{ url_for('create_list') }}" class="highlight">Create A List</a></p>
+    </div>
+</main>
+{% endblock %}

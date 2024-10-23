@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+<main>
+    <h2>Assign Genres</h2>
+
+    <p>Each movie must have 3 genres.</p>
+
+    <p>Please choose 3 distinct genres you would like to assign to <a href="{{ url_for('movie_page', movie_id=movie['id']) }}" class="highlight">{{ movie['title'] }}</a>.</p>
+
+    {% if current_genres %}
+        <p>
+            <b>Current Genres:</b>
+            {% for genre in current_genres %}
+                <a href="{{ url_for('genre_page', genre_id=genre['id']) }}" class="highlight">{{ genre['name'] }}</a>
+            {% endfor %}
+        </p>
+    {% endif %}
+
+    <form action="" method="POST" novalidate>
+        {{ form.hidden_tag() }}
+
+        <p>
+        {{ form.genre1.label }}
+        {{ form.genre1() }}
+        {% for error in form.genre1.errors %}
+            {{ error }}
+        {% endfor %}
+        </p>
+        <p>
+        {{ form.genre2.label }}
+        {{ form.genre2() }}
+        {% for error in form.genre2.errors %}
+            {{ error }}
+        {% endfor %}
+        </p>
+        <p>
+        {{ form.genre3.label }}
+        {{ form.genre3() }}
+        {% for error in form.genre3.errors %}
+            {{ error }}
+        {% endfor %}
+        </p>
+        {{ form.submit() }}
+    </form>
+
+    <p>{{ message }}</p>
+</main>
+{% endblock %}

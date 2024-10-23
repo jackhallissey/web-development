@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>{{ title }} - WD2 MovieDB</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+</head>
+<body>
+    <header>
+        <nav>
+            {% if g.user %}
+                <b>{{ g.user }}</b>
+                <a href="{{ url_for('account') }}">Account</a>
+                <a href="{{ url_for('logout') }}">Logout</a>
+            {% else %}
+                <a href="{{ url_for('login')}}">Login</a>
+                <a href="{{ url_for('register') }}">Register</a>
+            {% endif %}
+        </nav>
+
+        <h1>WD2 MovieDB</h1>
+        <nav>
+            <a href="{{ url_for('index') }}">Home</a>
+            {% if g.user %}
+                <a href="{{ url_for('user_page', username=g.user) }}">Profile</a>
+            {% else %}
+                <a href="{{ url_for('login', next='profile') }}">Profile</a>
+            {% endif %}
+            <a href="{{ url_for('browse') }}">Browse</a>
+            <a href="{{ url_for('search') }}">Search</a>
+        </nav>
+    </header>
+
+    {% block main_content %}
+
+    {% endblock %}
+
+    <footer>
+        <p>
+            <small>Site by Jack Hallissey</small>
+        </p>
+        <p>
+            <small>Favicon by <a href="https://icons8.com/icon/7VHKA0VglCRf/movie" target="_blank">Icons8</a></small>
+        </p>
+        <p>
+            <small>Default profile picture by <a href="https://unsplash.com/@dmjdenise?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash" target="_blank">Denise Jans</a> on <a href="https://unsplash.com/photos/photography-of-camera-reel-film-9lTUAlNB87M?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash" target="_blank">Unsplash</a></small>
+        </p>
+    </footer>
+</body>
+</html>

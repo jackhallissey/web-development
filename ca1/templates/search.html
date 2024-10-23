@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+<main>
+    <section>
+        <h2>Search Movies</h2>
+
+        <form action="" method="POST" novalidate>
+            {{ form.hidden_tag() }}
+
+            <p>
+            {{ form.query() }}
+            {% for error in form.query.errors %}
+                {{ error }}
+            {% endfor %}
+            </p>
+            {{ form.submit() }}
+        </form>
+
+        <p>
+            <a href="{{ url_for('advanced_search') }}" class="highlight">Advanced Search</a>
+        </p>
+    </section>
+
+    {% if movies %}
+        <section>
+            {% include 'movie_list.html' %}
+        </section>
+    {% endif %}
+</main>
+{% endblock %}

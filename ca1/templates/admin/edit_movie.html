@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+<main>
+    <h2>Edit Info: {{ movie['title'] }}</h2>
+
+    <form action="" method="POST" novalidate>
+        {{ form.hidden_tag() }}
+        
+        <p>
+        {{ form.title.label }}
+        {{ form.title() }}
+        {% for error in form.title.errors %}
+            {{ error }}
+        {% endfor %}
+        </p>
+        <p>
+        {{ form.synopsis.label }}
+        {{ form.synopsis() }}
+        {% for error in form.synopsis.errors %}
+            {{ error }}
+        {% endfor %}
+        </p>
+        <p>
+        {{ form.date.label }}
+        {{ form.date() }}
+        {% for error in form.date.errors %}
+            {{ error }}
+        {% endfor %}
+        </p>
+        <p>
+        {{ form.runtime.label }}
+        {{ form.runtime() }}
+        {% for error in form.runtime.errors %}
+            {{ error }}
+        {% endfor %}
+        </p>
+        <p>Enter runtime in minutes.</p>
+        <p>
+        {{ form.poster.label }}
+        {{ form.poster() }}
+        {% for error in form.poster.errors %}
+            {{ error }}
+        {% endfor %}
+        </p>
+        <p>Upload a new poster <a href="{{ url_for('upload_poster') }}" class="highlight">here</a>.</p>
+        <p>
+        {{ form.poster_src.label }}
+        {{ form.poster_src() }}
+        {% for error in form.poster_src.errors %}
+            {{ error }}
+        {% endfor %}
+        </p>
+        {{ form.submit() }}
+    </form>
+
+    <p>{{ message }}</p>
+</main>
+{% endblock %}

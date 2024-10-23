@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Add Results</title>
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='pages.css') }}">
+</head>
+<body>
+    <section>
+        <h1>Add Results?</h1>
+
+        <p>The following game results are stored in this session:</p>
+
+        <table>
+            <caption>Results</caption>
+            <tr>
+                <th>Score</th>
+                <th>Levels</th>
+                <th>Cheats</th>
+            </tr>
+            {% for result in results %}
+                <tr>
+                    <td>{{ result["score"] }}</td>
+                    <td>{{ result["levels"] }}</td>
+                    {% if result["cheats"] == 0 %}
+                        <td>No</td>
+                    {% else %}
+                        <td>Yes</td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+        </table>
+
+        <p>Would you like to add these results to the account <b>{{ g.user }}</b>?</p>
+
+        <p>If you choose No, these results will be lost.</p>
+
+        <form action="" method="POST" novalidate>
+            {{ form.hidden_tag() }}
+            
+            <p>
+            {{ form.choice() }}
+            {% for error in form.choice.errors %}
+                {{ error }}
+            {% endfor %}
+            </p>
+            {{ form.submit() }}
+            <p>
+                <a href="{{ url_for('logout') }}">Logout</a>
+            </p>
+        </form>
+    </section>
+</body>
+</html>

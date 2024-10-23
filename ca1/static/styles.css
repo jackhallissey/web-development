@@ -1,0 +1,148 @@
+body {
+    margin: 0;
+}
+
+header, footer {
+    text-align: center;
+}
+
+header h1 {
+    color: #DD4B3B;
+}
+
+nav:first-child {
+    padding: 0.5em 1em 0 0;
+    text-align: right;
+    color: #DD4B3B;
+}
+
+nav:first-child a {
+    color: #DD4B3B;
+}
+
+nav:nth-child(3) {
+    border-radius: 16px;
+    margin: 0 15em;
+    padding: 0.5em 0;
+    background-color: #DD4B3B;
+    text-align: center;
+}
+
+nav:nth-child(3) a {
+    padding: 0.5em 2em;
+    color: white;
+    font-size: 1.5em;
+    text-decoration: none;
+    transition: all 0.3s linear 0s;
+}
+
+nav:nth-child(3) a:hover {
+    background-color: white;
+    color: #DD4B3B;
+}
+
+
+
+main {
+    border-radius: 16px;
+    border: 3px solid #DD4B3B;
+    margin: 1em 15em;
+    padding: 0.5em 1.5em;
+}
+
+footer * {
+    color: #DD4B3B;
+}
+
+
+
+.highlight {
+    color: #DD4B3B;
+}
+
+.title {
+    font-size: 1.25em;
+}
+
+.poster {
+    max-width: 80%;
+}
+
+.poster_list {
+    max-width: 100%;
+}
+
+.profile {
+    padding: 1em 0 0;
+    max-width: 80%;
+}
+
+.rating {
+    border-radius: 16px;
+    border: 3px solid #DD4B3B;
+    margin: 1em 0;
+    padding: 0.5em 0.75em 0 0.75em;
+    max-width: 60%;
+}
+
+.rating a {
+    text-decoration: none;
+}
+
+.rating b a {
+    color: black;
+}
+
+.genres a {
+    text-decoration: none;
+    color: black;
+}
+
+.genres table, .genres td {
+    padding: 0.5em;
+}
+
+.movie_list {
+    border-collapse: collapse;
+    margin: 1em;
+    
+}
+
+.movie_list td, .movie_list th {
+    padding: 1em;
+}
+
+.movie_list tr {
+    border: 3px solid #DD4B3B;
+}
+
+.movie_list a {
+    text-decoration: none;
+    color: black;
+}
+
+form {
+    padding: 0 0.5em 0.5em;
+}
+
+.welcome {
+    text-align: center;
+}
+
+.movie_page {
+    display: grid;
+    grid-template-columns: 40% 60%;
+}
+
+.user_page {
+    display: grid;
+    grid-template-columns: 30% 70%;
+}
+
+.movie_page > div:first-child, .user_page > div:first-child {
+    grid-column: 1;
+}
+
+.movie_page > div:nth-child(2), .user_page > div:nth-child(2) {
+    grid-column: 2;
+}

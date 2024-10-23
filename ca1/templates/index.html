@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+<main>
+    {% if g.user %}
+        {% if user["admin"] == 1 %}
+            <section>
+                <h2>Admin Tools</h2>
+
+                <p><a href="{{ url_for('admin') }}" class="highlight">Go to Admin Tools</a></p>
+            </section>            
+        {% endif %}
+        
+        <section>
+            <h2>Recommended for You</h2>
+
+            {% if recs|length == 0 %}
+                <p>Rate some more <a href="{{ url_for('browse') }}" class="highlight">movies</a> to see recommendations.</p>
+            {% else %}
+                <p>Based on genres you like.</p>
+            
+                {% include 'recs_list.html' %}
+            {% endif %}
+        </section>
+    {% else %}
+        <section class="welcome">
+            <h2 class="highlight">Welcome to WD2 MovieDB</h2>
+            <p>Your one-stop shop for keeping track of your favourite movies and finding new ones to watch.</p>
+            <p><a href="{{ url_for('login') }}" class="highlight">Login</a> or <a href="{{ url_for('register') }}" class="highlight">register</a> if you would like to see personalised recommendations and add to your favourites list.</p>
+        </section>
+    {% endif %}
+
+    <section>
+        <h2>Top Movies</h2>
+        <p>Highest rated by our users</p>
+
+        {% include 'movie_list.html' %}
+    </section>
+</main>
+{% endblock %}

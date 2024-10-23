@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+<main>
+    <section>
+        <h2>Browse Movies</h2>
+
+        {% include 'movie_list.html' %}
+    </section>
+
+    <section class="genres">
+        <h2>Browse by Genre</h2>
+
+        <table>
+            {% for genre in genres %}
+                <tr>
+                    <td>
+                        <a href="{{ url_for('genre_page', genre_id=genre['id']) }}">{{ genre['name'] }}</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </section>
+</main>
+{% endblock %}

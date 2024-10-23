@@ -1,0 +1,47 @@
+.hidden {
+    display: none;
+}
+
+body {
+    text-align: center;
+    display: grid;
+    grid-template-columns: 80% 20%;
+}
+
+nav {
+    padding: 0.5em 1em 0 0;
+    text-align: right;
+}
+
+section, nav {
+    text-align: center;
+}
+
+#game {
+    grid-column: 1;
+}
+
+div {
+    grid-column: 2;
+}
+
+#welcome {
+    font-size: 1.5em;
+}
+
+#score, #level, #message {
+    font-size: 1.25em;
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+table {
+    margin: auto auto 1em;
+}
+
+#message {
+    color: red;
+}

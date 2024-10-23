@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+<main class="movie_page">
+    <div>
+        <figure>
+            <img class="poster" src="{{ url_for('static', filename='posters/' + movie['info']['poster']) }}" alt="Poster for {{ movie['info']['title'] }}">
+
+            <figcaption>{{ movie['info']['poster_src'] }}</figcaption>
+        </figure>
+
+        <h2 class="title">{{ movie['info']['title'] }}</h2>
+
+        <p><b class="highlight title">{{ movie['info']['date'][0:4] }}</b></p>
+
+        <p>
+            {% if movie['score'] %}
+                <b class="highlight title">{{ movie['score']|round(1) }}/10</b>
+            {% else %}
+                <b class="highlight title">-/10</b>
+            {% endif %}
+        </p>
+        
+        <p>
+            <b>Released:</b> {{ movie['date'] }}
+        </p>
+
+        <p>
+            <b>Runtime:</b> {{ movie['runtime'] }}
+        </p>
+    </div>
+
+    <div>
+        <section>
+            <h3>Synopsis</h3>
+
+            <p>{{ movie['info']['synopsis'] }}</p>
+        </section>
+
+        {% if movie['genres'] %}
+            <section class="genres">
+                <h3>Genres</h3>
+
+                <ul>
+                    {% for genre in movie['genres'] %}
+                        <li>
+                            <a href="{{ url_for('genre_page', genre_id=genre[-2]) }}">{{ genre['name'] }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </section>
+        {% endif %}
+
+        <section>
+            <h3>Ratings</h3>
+
+            {% for rating in movie['ratings'] %}
+                <section class="rating">
+                    {% if rating['username'] == g.user %}
+                        <b class="highlight">Your Rating</b><br>
+                    {% endif %}
+                    <b><a href="{{ url_for('user_page', username=rating['username']) }}">{{ rating['username'] }}</a></b>
+                    <p class="highlight">{{ rating['score'] }}/10</p>
+                    <p>{{ rating['review'] }}</p>
+                    {% if rating['username'] == g.user %}
+                        <p><a href="{{ url_for('remove_rating', movie_id=movie['info']['id']) }}" class="highlight">Delete</a></p>
+                    {% endif %}
+                </section>
+            {% endfor %}
+        </section>
+
+        <section>
+            <h3>Rate This Movie</h3>
+            {% if g.user %}
+                <form action="" method="POST" novalidate>
+                    {{ form.hidden_tag() }}
+
+                    <p>
+                    {{ form.score.label }}
+                    {{ form.score() }}
+                    {% for error in form.score.errors %}
+                        {{ error }}
+                    {% endfor %}
+                    </p>
+                    <p>
+                    {{ form.review.label }}
+                    {{ form.review() }}
+                    {% for error in form.review.errors %}
+                        {{ error }}
+                    {% endfor %}
+                    </p>
+                    {{ form.submit() }}
+                </form>
+            {% else %}
+                <p>You must <a href="{{ url_for('login', next=url_for('movie_page', movie_id=movie['info']['id'])) }}" class="highlight">login</a> to rate this movie.</p>
+            {% endif %}
+        </section>
+
+        {% if g.user %}
+            <section>
+                <h3>Lists</h3>
+                
+                {% if movie['lists'] %}
+                    <p>This movie is in the following lists:</p>
+                    <ul>
+                        {% for list in movie['lists'] %}
+                            <li>
+                                <a href="{{ url_for('list_page', list_id=list['id']) }}" class="highlight">{{ list['list_name'] }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>This movie is not in any of your lists.</p>
+                {% endif %}
+
+                <p><a href="{{ url_for('add_to_list', movie_id=movie['info']['id']) }}" class="highlight">Add to List</a></p>
+            </section>
+        {% endif %}
+    </div>
+</main>
+{% endblock %}

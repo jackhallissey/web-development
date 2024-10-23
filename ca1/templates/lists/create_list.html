@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+<main>
+    <h2>Create A List</h2>
+
+    <form action="" method="POST" novalidate>
+        {{ form.hidden_tag() }}
+
+        <p>
+        {{ form.name.label }}
+        {{ form.name() }}
+        {% for error in form.name.errors %}
+            {{ error }}
+        {% endfor %}
+        </p>
+        <p>
+        {{ form.visibility.label }}
+        {{ form.visibility() }}
+        {% for error in form.visibility.errors %}
+            {{ error }}
+        {% endfor %}
+        </p>
+        {{ form.submit() }}
+    </form>
+</main>
+{% endblock %}

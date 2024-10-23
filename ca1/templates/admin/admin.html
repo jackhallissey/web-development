@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+<main>
+
+    <h2>Admin Tools</h2>
+
+    <section>
+        <h3>Manage Movies</h3>
+
+        <ul>
+            <li><a href="{{ url_for('add_movie') }}" class="highlight">Add Movie</a></li>
+            <li><a href="{{ url_for('delete_movie_options') }}" class="highlight">Delete Movie</a></li>
+            <li><a href="{{ url_for('edit_movie_options') }}" class="highlight">Edit Movie Info</a></li>
+            <li><a href="{{ url_for('upload_poster') }}" class="highlight">Upload a Movie Poster</a></li>
+            <li><a href="{{ url_for('assign_genres_options') }}" class="highlight">Assign Genres to Movies</a></li>
+        </ul>
+    </section>
+
+    <section>
+        <h3>Manage Genres</h3>
+
+        <ul>
+            <li><a href="{{ url_for('add_genre') }}" class="highlight">Add Genre</a></li>
+            <li><a href="{{ url_for('delete_genre') }}" class="highlight">Delete Genre</a></li>
+            <li><a href="{{ url_for('edit_genre_options') }}" class="highlight">Edit Genres</a></li>
+        </ul>
+    </section>
+</main>
+{% endblock %}

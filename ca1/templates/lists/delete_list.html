@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+<main>
+
+    <h2>Delete List</h2>
+
+    <p>Please confirm whether you would like to delete the list <a href="{{ url_for('list_page', list_id=list['id']) }}" class="highlight">{{ list["list_name"] }}</a>.</p>
+
+    <form action="" method="POST" novalidate>
+        {{ form.hidden_tag() }}
+
+        {{ form.submit() }}
+    </form>
+
+</main>
+{% endblock %}

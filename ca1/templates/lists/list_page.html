@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+<main>
+    <section>
+        <h2>{{ list['list_name'] }}</h2>
+
+        <p><b>User:</b> <a href="{{ url_for('user_page', username=list['username']) }}" class="highlight">{{ list['username'] }}</a></p>
+
+        <p>
+            <b>Visibility</b>:
+            {% if list['public'] == 1 %}
+                <span class="highlight">Public</span>
+            {% else %}
+                <span class="highlight">Private</span>
+            {% endif %}
+        </p>
+    </section>
+
+    {% if list['username'] == g.user %}
+        <section>
+            <p>You can add a movie to this list from the movie's page.</p>
+            
+            {% if movies %}
+                <p><a href="{{ url_for('remove_from_list', list_id=list['id']) }}" class="highlight">Remove Movies</a></p>
+            {% endif %}
+        </section>
+
+        <section>
+            <h3>List Settings</h3>
+
+            <form action="" method="POST" novalidate>
+                {{ form.hidden_tag() }}
+
+                <p>
+                {{ form.name.label }}
+                {{ form.name() }}
+                {% for error in form.name.errors %}
+                    {{ error }}
+                {% endfor %}
+                </p>
+                <p>
+                {{ form.visibility.label }}
+                {{ form.visibility() }}
+                {% for error in form.visibility.errors %}
+                    {{ error }}
+                {% endfor %}
+                </p>
+                {{ form.submit() }}
+            </form>
+
+            <p>{{ message }}</p>
+
+            <p>
+                <a href="{{ url_for('delete_list', list_id=list['id']) }}" class="highlight">Delete List</a>
+            </p>
+        </section>
+    {% endif %}
+
+    <section>
+        {% include 'movie_list.html' %}
+    </section>
+</main>
+{% endblock %}
